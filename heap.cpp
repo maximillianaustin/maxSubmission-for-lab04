@@ -64,7 +64,11 @@ using std::cout;
 // Should run in O(n) time
 Heap::Heap(std::vector<int>::iterator start, std::vector<int>::iterator end){
   for (auto it = start; it != end; ++it) {
-    push(*it);
+      heapData.push_back(*it);
+  }
+  // Heapify the entire array
+  for (int i = heapData.size() / 2 - 1; i >= 0; i--) {
+      bubbleDown(i);
   }
 }
 
