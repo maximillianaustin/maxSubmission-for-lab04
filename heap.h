@@ -19,7 +19,10 @@ class Heap{
     bool empty();
 
  private:
-    std::vector<int> vdata; //store the binary heap tree as a dynamic array
+   bool compare(int parentVal, int childVal); // helper function to compare values based on heap type (min or max)
+   void bubbleUp(int pos); // helper function to maintain heap property after insertion
+   void bubbleDown(int pos); // helper function to maintain heap property after deletion
+    std::vector<int> heapData; //store the binary heap tree as a dynamic array
 };
 
 #endif
