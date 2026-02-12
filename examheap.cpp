@@ -8,6 +8,7 @@
 #include <ctime>
 #include <algorithm>
 #include <cassert>
+#include <functional> 
 using namespace std;
 
 int main(int argc, char *argv[]) {
