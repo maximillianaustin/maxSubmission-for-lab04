@@ -25,41 +25,35 @@ using std::cout;
         }
     }
     void Heap::bubbleDown(int pos) {
-        int n = heapData.size();
-        
-        while (true) {
-                int left = 2 * pos + 1;
-                int right = 2 * pos + 2;
-                int largest = pos; // Assume parent is largest for now
-    
-                // 1. Is Left Child bigger than current largest?
-                
-                // first condition checks ("ok is this an actual child)") ((must be asked first))
-                // second condition asks ('ok should this be prioritized?   ')
-                if (left < n && compare(heapData[largest] , heapData[left])) {
-                    largest = left;
-                }
-                    ///asks it again if.  this also checks if the right node is bigger)
-                // 2. Is Right Child bigger than current largest?
-                // (Note: This handles the case where Right > Left implicitly)
-                if (right < n && compare(heapData[largest] , heapData[right])) {
-                    largest = right;
-                }
-    
-                // 3. Did we find a child that is bigger than the parent?
-                if (largest != pos) {
-                  auto temp = heapData[largest];
-                  heapData[largest] = heapData[pos];
-                  heapData[pos] = temp;
-                    pos = largest; // Update position to continue sinking down
-                } else {
-                    // If parent is bigger than both children, we are done!
-                    break; 
-                }
-            
-            
+    int n = heapData.size();
+
+    while (true) {
+        int left = 2 * pos + 1;
+        int right = 2 * pos + 2;
+        int smallest = pos; // Rename 'largest' to 'smallest'
+
+        // 1. Is Left Child SMALLER than current parent?
+        // compare(parent, child) returns true if parent > child
+        if (left < n && compare(heapData[smallest], heapData[left])) {
+            smallest = left;
+        }
+
+        // 2. Is Right Child SMALLER than the current smallest candidate?
+        if (right < n && compare(heapData[smallest], heapData[right])) {
+            smallest = right;
+        }
+
+        if (smallest != pos) {
+            auto temp = heapData[smallest];
+            heapData[smallest] = heapData[pos];
+            heapData[pos] = temp;
+            pos = smallest; 
+        } else {
+            break; 
         }
     }
+
+  }
 // Builds a heap from the range [start, end) using the heapify algorithm
 // Should run in O(n) time
 Heap::Heap(std::vector<int>::iterator start, std::vector<int>::iterator end){
