@@ -1,5 +1,5 @@
 // heap.cpp
-// Diba Mirza
+// Maximillian Austin, 2/12/26
 
 #include "heap.h"
 #include <iostream>
@@ -10,7 +10,7 @@ using std::cout;
             return parentVal > childVal; // MinHeap: Parent should be smaller. If Parent > Child, SWAP.
        
     }
-
+    
  void Heap::bubbleUp(int pos) {
         while (pos > 0 ){
             int parentpos = (pos-1)/2;
